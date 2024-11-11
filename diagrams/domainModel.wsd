@@ -1,0 +1,83 @@
+@startuml Hospital
+
+class Hospital
+
+Hospital *--> Administracion
+Hospital *--> Digestivo
+Hospital *--> Cardiologia
+Hospital *--> Cirugia
+Hospital *--> Dermatologia
+Hospital *--> MedicinaInterna
+Hospital *--> Oncologia
+Hospital *--> Oftalmologia
+Hospital *--> Psiquiatria
+Hospital *--> Traumatologia
+Hospital *--> Fisioterapia
+Hospital *--> UCI
+Hospital *--> Hospitalizacion
+Hospital *--> PruebasMedicas
+Hospital *--> UnidadDiabetes
+Hospital *--> UnidadCardiovascular
+Hospital *--> Urgencias
+Hospital *--> UnidadFormacion
+Hospital *--> Cafeteria
+Hospital *--> Aparcamiento
+
+Hospital o--> Gerente
+class Unidad
+
+Administracion --|> Unidad
+
+ConsultasExternas --|> Unidad
+Digestivo -up-|> ConsultasExternas
+Cardiologia -up-|> ConsultasExternas
+Cirugia -up-|> ConsultasExternas
+Dermatologia -up-|> ConsultasExternas
+MedicinaInterna -up-|> ConsultasExternas
+Oncologia -up-|> ConsultasExternas
+Oftalmologia -up-|> ConsultasExternas
+Psiquiatria -up-|> ConsultasExternas
+Traumatologia -up-|> ConsultasExternas
+Fisioterapia -up-|> ConsultasExternas
+
+UCI --|> Unidad
+Hospitalizacion --|> Unidad
+
+PruebasMedicas --|> Unidad
+PruebasMedicas --> Analitica
+PruebasMedicas --> RayosX
+PruebasMedicas --> Resonancia
+PruebasMedicas --> Ecografia
+
+UnidadEspecializada --|> Unidad
+UnidadDiabetes --|> UnidadEspecializada
+UnidadCardiovascular --|> UnidadEspecializada
+
+Urgencias --|> Unidad
+
+UnidadFormacion --|> Unidad
+UnidadFormacion *-> Clase
+UnidadFormacion *-> Laboratorio
+
+Cafeteria --|> Unidad
+
+Aparcamiento --|> Unidad
+Aparcamiento --> TicketeraAutomatica
+
+class Empleado
+
+Gerente --|> Empleado
+Medico --|> Empleado
+Enfermero --|> Empleado
+Soporte --|> Empleado
+Mantenimiento --|> Soporte
+Seguridad --|> Soporte
+EncargadoAparcamiento --|> Soporte
+EncargadoCafeteria --|> Soporte
+
+class Estudiante
+
+class Paciente
+
+@enduml
+
