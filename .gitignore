@@ -1,1 +1,43 @@
-bin/*
+# Compiled class files
+*.class
+
+# IDE
+*.ctxt
+
+# Directories
+/bin/
+/build/
+/out/
+/target/
+
+# Maven and Gradle directories
+/.mvn/
+/target/
+/build/
+
+# IDE-specific files
+/.idea/
+*.iml
+.classpath
+.project
+.settings/
+/nbproject/
+
+# Log files
+*.log
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Jar files and dependencies
+*.jar
+/lib/
+
+# Environment files
+*.env
+
+# Temp files
+*~
+*.swp
+

@@ -1,0 +1,23 @@
+@startuml Empleados
+
+class Persona{
+    - nombre: String
+    - apellido: String
+}
+
+class Empleado{
+    - unidad: Unidad
+
+}
+class Enfermero
+class Medico
+class Paciente
+
+
+
+Empleado -up-|> Persona
+Paciente -up-|> Persona
+Enfermero -up-|> Empleado
+Medico -up-|> Empleado
+
+@enduml

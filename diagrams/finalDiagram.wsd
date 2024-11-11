@@ -1,0 +1,343 @@
+@startuml
+
+class Hospital {
+  - Consola consola
+  - ArrayList<Unidad> unidades
+  - ArrayList<Empleado> empleadosGeneral
+  - ArrayList<Paciente> pacientesGeneral
+  - GestorPacientes gestorPacientes
+  - GestorEmpleados gestorEmpleados
+  - GestorEstudiantes gestorEstudiantes
+
+  + main(args: String[]) : void
+  + Hospital()
+  - iniciar() : void
+  - gestiona() : void
+}
+Hospital --> Consola
+Hospital o-> Unidad
+Hospital o-> Empleado 
+Hospital o-> Paciente 
+Hospital *--> GestorPacientes 
+Hospital *--> GestorEmpleados 
+Hospital *--> GestorEstudiantes 
+
+class Consola {
+  - static Consola consola
+  - Scanner scanner
+
+  - Consola()
+  + static getInstancia() : Consola
+  + readString(mensaje: String) : String
+  + readInt(mensaje: String) : int
+  + println()
+  + println(string: String)
+}
+
+class Persona {
+    - nombre: String
+    - apellido: String
+    + Persona(nombre: String, apellido: String)
+    + getNombre(): String
+    + setNombre(nombre: String): void
+    + getApellido(): String
+    + setApellido(apellido: String): void
+    + getNombreApellido(): String
+    + toString(): String
+}
+
+abstract class Unidad {
+  - Consola consola
+  - String nombreUnidad
+  - LinkedList<Empleado> asignados
+
+  + Unidad(nombreUnidad: String)
+  + Empleado buscaEmpleado(nombre: String, apellido: String) : Empleado
+  + Empleado buscaEmpleado(empleado: Empleado) : Empleado
+  + String getNombreUnidad() : String
+  + LinkedList<Empleado> getEmpleados() : LinkedList<Empleado>
+  + void asignaEmpleado(Empleado empleado)
+  + void desAsignaEmpleado(nombre: String, apellido: String)
+  + boolean estaAsignado(Empleado empleado) : boolean
+  + String muestraNombre() : String
+  - String capitalize(str: String) : String
+  - void altaPaciente(Paciente paciente)
+  - void desasignaPaciente(Paciente paciente)
+  - void darCita(Paciente paciente, nombreProf: String, apellidoProf: String)
+}
+Unidad --> Consola
+Unidad o--> Empleado
+Unidad o--> Paciente
+
+
+class Empleado {
+  + String getNombre() : String
+  + String getApellido() : String
+}
+
+class Paciente {
+    - nombre: String
+    - apellido: String
+    - unidadAsociada: Unidad
+    - idPaciente: String
+    + Paciente(nombre: String, apellido: String)
+    + asociaUnidad(unidad: Unidad): void
+    + getIdPaciente(): String
+    + toString(): String
+    + esIgualA(otroPaciente: Paciente): boolean
+    + esIDValido(idPaciente: String): boolean
+    + generarIDUnico(): String
+    + actualizarInformacion(nombre: String, apellido: String, idPaciente: String): void
+    + obtenerInformacionDetallada(): String
+    + getUnidadAsociada(): Unidad
+    + esCitable(): boolean
+}
+
+class GestorPacientes {
+    - consola: Consola
+    - unidades: ArrayList<Unidad>
+    - empleados: ArrayList<Empleado>
+    - pacientes: ArrayList<Paciente>
+    + GestorPacientes(unidades: ArrayList<Unidad>, empleados: ArrayList<Empleado>, pacientes: ArrayList<Paciente>)
+    + gestionaPacientes(): void
+    - asignarCita(): void
+    - listaPacientes(): void
+    - altaPaciente(): void
+    - bajaPaciente(): void
+    - buscaPaciente(nombre: String, apellido: String): Paciente
+    - readNombre(): String
+    - readApellido(): String
+    - getUnidad(nombreUnidad: String): Unidad
+    + annadePaciente(nombreApellido: String, unidadStr: String): void
+}
+GestorPacientes --> Consola
+GestorPacientes --> Unidad
+GestorPacientes o--> Medico
+GestorPacientes o--> Enfermero
+GestorPacientes o--> Paciente
+
+class GestorEmpleados {
+  - Consola consola
+  - ArrayList<Unidad> unidades
+  - ArrayList<Empleado> empleados
+  - ArrayList<Medico> medicos
+  - ArrayList<Enfermero> enfermeros
+  - ArrayList<Auxiliar> auxiliares
+  - ArrayList<Camarero> camareros
+  - ArrayList<Administrativo> administrativos
+  - ArrayList<Parquimetrero> parquimetreros
+  - ArrayList<Tecnico> tecnicos
+
+  + GestorEmpleados(unidades: List<Unidad>, empleadosGeneral: List<Empleado>)
+  + ArrayList<Medico> getMedicos() : ArrayList<Medico>
+  + ArrayList<Enfermero> getEnfermeros() : ArrayList<Enfermero>
+  + gestionaEmpleados() : void
+}
+GestorEmpleados --> Consola : usa
+GestorEmpleados --> Unidad : usa
+GestorEmpleados o--> Empleado
+GestorEmpleados o--> Medico 
+GestorEmpleados o--> Enfermero 
+GestorEmpleados o--> Auxiliar 
+GestorEmpleados o--> Camarero 
+GestorEmpleados o--> Administrativo 
+GestorEmpleados o--> Parquimetrero 
+GestorEmpleados o--> Tecnico 
+
+class GestorEstudiantes {
+
+  - ArrayList<Enfermero> enfermeros
+  - ArrayList<Medico> medicos
+  - ArrayList<Unidad> unidades
+  - ArrayList<Estudiante> estudiantes
+  - Consola consola
+  
+  + GestorEstudiantes(unidades: List<Unidad>, medicos: List<Medico>, enfermeros: List<Enfermero>)
+  + gestionaEstudiantes() : void
+  - listarCitasEstudiantes() : void
+  - listarEstudiantes() : void
+  - asignarCita() : void
+  - getFechaHoraDeCita() : LocalDateTime
+  - getEnfermero(nombreProf: String, apellidoProf: String) : Enfermero
+  - getMedico(nombreProf: String, apellidoProf: String) : Medico
+  - borraEstudiante() : void
+  - getEstudiante(nombre: String, apellido: String) : Estudiante
+  - annadeEstudiante() : void
+  - estudianteExiste(nombre: String, apellido: String) : boolean
+  - readNombre() : String
+  - readApellido() : String
+  - getUnidad(nombreUnidad: String) : Unidad
+}
+GestorEstudiante --> Consola
+GestorEstudiante --> Unidad
+GestorEstudiante o--> Medico
+GestorEstudiante o--> Enfermero
+GestorEstudiante o--> Estudiante
+
+class Estudiante {
+    - agenda: Agenda
+    - consola: Consola
+    + Estudiante(nombre: String, apellido: String)
+    + agregarCita(cita: Cita): void
+    + listarCitas(): void
+    + getAgenda(): Agenda
+    + toString(): String
+}
+Estudiante *-> Agenda
+Estudiante --> Consola
+
+class Medico {
+  - Agenda agenda
+  
+  + Medico(nombre: String, apellido: String, oficio: Oficio)
+  + agregarCita(cita: Cita) : void
+  + listarCitas() : void
+  + getAgenda() : Agenda
+  + toString() : String
+}
+Medico *-> Agenda
+
+class Enfermero {
+    - agenda: Agenda
+
+    + Enfermero(nombre: String, apellido: String, oficio: Oficio)
+    + agregarCita(cita: Cita): void
+    + listarCitas(): void
+    + getAgenda(): Agenda
+    + toString(): String
+}
+Enfermero --|> Empleado
+Enfermero *-> Agenda
+
+class Auxiliar {
+    + Auxiliar(nombre: String, apellido: String, oficio: Oficio)
+    + toString(): String
+}
+
+class Agenda {
+    - consola: Consola
+    - citas: Set<Cita>
+    + Agenda()
+    + agregarCita(cita: Cita): void
+    + getCitas(): Set<Cita>
+    + listarCitas(): void
+    + buscarCitaPorFechaHora(fechaHora: LocalDateTime): Cita
+    + eliminarCita(cita: Cita): void
+}
+Agenda o-> Cita
+
+class Cita {
+    - paciente: Paciente
+    - fechaHora: LocalDateTime
+
+    + Cita(paciente: Paciente, fechaHora: LocalDateTime)
+    + getPaciente(): Paciente
+    + setPaciente(paciente: Paciente): void
+    + getFecha(): LocalDate
+    + getHora(): LocalTime
+    + getFechaHora(): LocalDateTime
+    + toString(): String
+}
+Consola -.> Scanner 
+
+enum Oficio {
+    MEDICO("Médico"),
+    ENFERMERO("Enfermero"),
+    AUXILIAR("Auxiliar"),
+    ADMINISTRATIVO("Administrativo"),
+    CAMARERO("Camarero"),
+    TECNICO("Técnico"),
+    PARQUIMETRERO("Parquimetrero"),
+    POLIVALENTE("Polivalente");
+
+    - oficioStr: String
+
+    + Oficio(oficioStr: String)
+    + getOficioStr(): String
+    + toString(): String
+}
+
+class Aparcamiento {
+}
+Aparcamiento --|> Unidad
+
+class Cafeteria {
+}
+Cafeteria --|> Unidad
+
+class ConsultasExternas {
+    - pacientes: ArrayList<Paciente>
+
+    + ConsultasExternas(nombreUnidad: String)
+    + altaPaciente(paciente: Paciente)
+    + desasignaPaciente(paciente: Paciente)
+    + darCita(paciente: Paciente, nombreProf: String, apellidoProf: String)
+}
+ConsultasExternas --|> Unidad
+
+class Hospitalizacion {
+    - habitaciones: ArrayList<Habitacion>
+    - pacientes: ArrayList<Paciente>
+    + Hospitalizacion(nombreUnidad: String)
+    + altaPaciente(paciente: Paciente): void
+    + desasignaPaciente(paciente: Paciente): void
+    + darCita(paciente: Paciente, nombreProf: String, apellidoProf: String): void
+    - getHabitacionLibre(): Habitacion
+    - liberaHabitacion(): void
+}
+Hospitalizacion --|> Unidad
+Hospitalizacion o-> Habitacion
+Hospitalizacion o-> Paciente
+
+class UnidadCardiovascular {
+    - pacientes: ArrayList<Paciente>
+    + UnidadCardiovascular(nombreUnidad: String)
+    + altaPaciente(paciente: Paciente): void
+    + desasignaPaciente(paciente: Paciente): void
+    + darCita(paciente: Paciente, nombreProf: String, apellidoProf: String): void
+}
+UnidadCardiovascular o-> Paciente
+UnidadCardiovascular --|> Unidad
+
+class PruebasMedicas {
+    - pacientes: ArrayList<Paciente>
+    + PruebasMedicas(nombreUnidad: String)
+    + altaPaciente(paciente: Paciente): void
+    + desasignaPaciente(paciente: Paciente): void
+}
+PruebasMedicas o-> Paciente
+PruebasMedicas --|> Unidad
+
+class UnidadDiabetes {
+    - pacientes: ArrayList<Paciente>
+    + UnidadDiabetes(nombreUnidad: String)
+    + altaPaciente(paciente: Paciente): void
+    + desasignaPaciente(paciente: Paciente): void
+    + darCita(paciente: Paciente, nombreProf: String, apellidoProf: String): void
+}
+UnidadDiabetes o-> Paciente
+UnidadDiabetes --|> Unidad
+
+
+
+class Administrativo
+class Tecnico
+class Parquimetrero
+class Auxiliar
+class Medico
+class Enfermero
+class Camarero
+
+Administrativo -|> Empleado
+Tecnico -|> Empleado
+Parquimetrero -|> Empleado
+Auxiliar -|> Empleado
+Medico -|> Empleado
+Enfermero -|> Empleado
+Camarero -|> Empleado
+Empleado -|> Persona
+Estudiante -|> Persona
+Paciente -|> Persona
+
+
+@enduml

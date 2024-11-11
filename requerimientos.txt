@@ -1,0 +1,47 @@
+● Dar de alta a los empleados del hospital, asignando cada uno a una unidad.
+
+● Dar de alta a los estudiantes, asignándoles clases en la unidad de formación con un miembro
+del personal médico/un miembro del personal de enfermería, o una cita (de mañana o tarde)
+con un miembro del personal médico para estar presentes durante las citas que tiene el
+especialista.
+
+● Dar de alta a los pacientes.
+
+● Dar una cita a un paciente para ver a un miembro del personal médico o un miembro del
+personal de enfermería (o para realizar una prueba médica) en una unidad en una fecha
+concreta, según la disponibilidad de cada especialista. La cita deberá quedar registrada en la
+agenda del miembro del personal médico/miembro del personal de enfermería
+correspondiente.
+
+● Realizar el alta y la baja de pacientes ingresados en el hospital, asignándoles una habitación e
+indicando el procedimiento médico que tienen que recibir según su expediente médico.
+
+● Actualizar el expediente médico de una paciente una vez terminada una consulta, o
+tratamiento, por parte de un miembro del personal médico o un miembro del personal de
+enfermería.
+
+● Realizar búsquedas sencillas sobre los empleados y pacientes del sistema.
+
+● Realizar consultas y actualizaciones del calendario de cada miembro del personal médico/
+miembro del personal de enfermería
+
+
+Para el 10:
+Preparación y emisión de facturas para pacientes sin seguridad social o seguro médico
+privado.
+● Gestión de servicios de mantenimiento (alta y baja de recursos dañados que requieren
+mantenimiento o reparación y asignación de cada caso a un técnico).
+● Visualización de diferentes tipos de datos del sistema:
+    ○ Los empleados que hay en el sistema, clasificados por su unidad de trabajo.
+    ○ Listado de las agendas de cada especialista (los miembros del personal médico o los
+    miembros del personal de enfermería).
+    ○ Listado de pacientes que tiene cada miembro del personal médico en una fecha
+    concreta.
+    ○ Listados de pacientes y sus expedientes médicos con diferentes criterios de búsqueda:
+    • Pacientes ingresados.
+    • Pacientes con citas en la agenda de consultas externas durante un periodo
+    en concreto.
+    • Pacientes que tienen que ver un especialista (miembro del personal
+    médico o miembro del personal de enfermería) en un periodo en concreto
+    (día o semana).
+    ○ Listado de ocupación de las habitaciones donde están ingresados los pacientes.
